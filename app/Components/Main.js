@@ -38,29 +38,27 @@ var Main = React.createClass({
 				this.setState({results: data});
 		// Bind object
 		}.bind(this));
-	},	// we will call this function form the component did mount and component did update functions below
-	getArticlesFromHelpers: function() {
-		
-		// access helpers.js to use the getArticles function and access the get route defined in server.js
+	},	
+	getArticlesFromHelpers: function() {		
+		// Call the getArticles function in helpers.js	
 		helpers.getArticles()
 			.then(function(response) {
 				console.log(response);
-				// set the state of articles with the articles stored in the database
+				// Save the articles
 				this.setState({
 					saved: response.data
-				})
-				
+				})				
 		}.bind(this));
 
 	},
-	// Function to update the parent from the child
+	// Update the parent from the child
 	setArticles: function(article) {
 		this.setState({
 			query: article.Title
 		});
 
 	},
-	// same as above in that we need this function to automatically display the items on the page with componentDidUpdate function
+	// Delete the parent from the child
 	setDeleteArticles: function(deleted) {
 		this.setState({
 			deleted: deleted
